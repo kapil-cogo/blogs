@@ -35,6 +35,10 @@ class BlogController < ApplicationController
 
     end
 
+    # gem 'rack-cors'
+    # bundle install
+    # cors.rb in initializers
+
     def edit
         update_blog = Blog.find(params["blogID"])
         blog = {
@@ -47,6 +51,12 @@ class BlogController < ApplicationController
         update_blog.update(blog)
 
         render json: update_blog
+    end
+
+    def searchBlogs
+        blog = Blog.where(['title LIKE ?', "%#{params['title']}%"])
+        render json: blog
+    
     end
 
 

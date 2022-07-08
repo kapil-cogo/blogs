@@ -4,10 +4,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get "/blogs", to: "blog#blogsList"
-  get "/blogs/:blogID", to: "blog#singleBlog"
+  get "/:blogID", to: "blog#singleBlog"
   post "/blogs", to: "blog#createBlog"
-  put "/blogs/:blogID", to: "blog#edit"
-  delete "/blogs/:blogID", to: "blog#destroy"
+  put "/edit/:blogID", to: "blog#edit"
+  delete "/:blogID", to: "blog#destroy"
+
+  get "/blogs/search/:title", to: "blog#searchBlogs"
   
 
 end
