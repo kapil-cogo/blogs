@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_07_120821) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_08_162640) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "short_desc"
@@ -18,6 +18,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_120821) do
     t.string "img_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "blogs", "users"
 end
